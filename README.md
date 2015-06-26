@@ -49,3 +49,27 @@ PriorityQueueBenchmark.jdkPriorityQueue    5   10000  thrpt  200   5878.596 ± 1
 ```
 
 The Guava method is almost 4 times faster than using a PriorityQueue.
+
+# Why?
+
+The [algorithm used by the Ordering class (at least as of version 18)][algorithm] is:
+
+1. Create a buffer of size `2 * k`
+2. Iterate over the input and only fill the buffer with values less than the
+   max seen so far (or greater than the max, depending on the desired ordering)
+3. When the buffer gets full: 
+  - find the median value in the buffer using [quickselect][]
+  - rearrange the values in the buffer around the median
+  - then discard (i.e. ignore, by resetting the `bufferSize` pointer) the last
+    k elements
+4. After iteration is complete, sort and return the first `k` items in the buffer
+
+As the comments in the Ordering class mention, this results in a O(n) algorithm
+(where `n` is size of input list) that passes over the input only once and
+needs just O(k) memory (beyond the original inputs). The "find median and
+partition" operation needs to be done `n / k` times.
+
+TODO: comparison with what `java.util.PriorityQueue` does
+
+[algorithm]: https://github.com/google/guava/blob/v18.0/guava/src/com/google/common/collect/Ordering.java#L666
+[quickselect]: https://en.wikipedia.org/wiki/Quickselect
