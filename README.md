@@ -6,7 +6,7 @@ which benchmarked several algorithms/implementations without being clear on the 
 
 These benchmarks use [JMH](http://openjdk.java.net/projects/code-tools/jmh/).
 
-[guava]: http://google.github.io/guava/releases/18.0/api/docs/com/google/common/collect/Ordering.html#leastOf(java.lang.Iterable, int)
+[guava]: http://google.github.io/guava/releases/18.0/api/docs/com/google/common/collect/Ordering.html#leastOf(java.lang.Iterable,%20int)
 [jdk-pq]: http://docs.oracle.com/javase/8/docs/api/java/util/PriorityQueue.html
 [inspiration]: http://www.michaelpollmeier.com/selecting-top-k-items-from-a-list-efficiently-in-java-groovy/
 
