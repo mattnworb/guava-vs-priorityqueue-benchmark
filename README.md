@@ -69,7 +69,9 @@ As the comments in the Ordering class mention, this results in a O(n) algorithm
 needs just O(k) memory (beyond the original inputs). The "find median and
 partition" operation needs to be done `n / k` times.
 
-TODO: comparison with what `java.util.PriorityQueue` does
+In contrast, the approach with `java.util.PriorityQueue` will build a heap out
+of the entire input list, and each `poll()` of the queue results in sifting
+down new values to (partially) re-order the heap/tree.
 
 [algorithm]: https://github.com/google/guava/blob/v18.0/guava/src/com/google/common/collect/Ordering.java#L666
 [quickselect]: https://en.wikipedia.org/wiki/Quickselect
